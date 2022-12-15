@@ -1,0 +1,13 @@
+.btn-flat {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: #df2a2a;
+  transition: all 0.3s ease;
+  font-family: 'Rubik Gemstones', cursive;
+}
+
+.btn-flat:hover {
+  background: #c40303;
+  color: white;
+}
