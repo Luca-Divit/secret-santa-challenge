@@ -1,0 +1,32 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-luca">
+  <div class="container-fluid">
+    <%= link_to "#", class: "navbar-brand" do %>
+      <%= image_tag "kira-auf-der-heide-IPx7J1n_xUc-unsplash" %>
+    <% end %>
+
+    <div>
+      <h1 class="navbar-title">
+        Xmas draw challenge
+      </h1>
+    </div>
+
+    <div class="collapse navbar-collapse">
+      <% if user_signed_in? %>
+        <ul class="navbar-nav me-auto">
+          <li>
+            <%= link_to 'Logout', '#', class: 'nav-link' %>
+          </li>
+          <li class="nav-item active">
+            <%= image_tag 'karsten-winegeart-qzCgm273HW0-unsplash' %>
+          </li>
+        </ul>
+      <% else %>
+      <ul class="navbar-nav me-auto">
+          <li class="nav-item active">
+            <%= link_to "Login", "#", class: "nav-link" %>
+          </li>
+      </ul>
+      <% end %>
+    </div>
+  </div>
+</div>
