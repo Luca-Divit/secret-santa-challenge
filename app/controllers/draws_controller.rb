@@ -17,6 +17,7 @@ class DrawsController < ApplicationController
 
   def show
     @draw = Draw.find(params[:id])
+    @partecipant = Partecipant.new
   end
 
   private
