@@ -2,13 +2,18 @@
   <div class="container">
     <h1>Drawing names for <strong>secret santa</strong> has never <strong>been easier </strong>!</h1>
     <p>Set up the title, the names and we'll take care of the rest.</p>
-    <a class="btn btn-flat" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Try now!</a>
+    <% if user_signed_in? %>
+      <a class="btn btn-flat" data-bs-toggle="modal" href="#exampleModalDraw" role="button">Create a draw!</a>
+    <% else %>
+      <a class="btn btn-flat" data-bs-toggle="modal" href="#exampleModal" role="button">Try now!</a>
+    <% end %>
   </div>
 </div>
-<div class="container mt-3 mb-3 text-center">
+<div class="container mt-2 mb-2 text-center">
   <h1>
     Joining a draw?
   </h1>
-  <%= link_to 'Click here', root_path, class: 'btn btn-flat' %>
+  <%= link_to 'Click here', '#', class: 'btn btn-flat' %>
 </div>
-<%= render partial: "shared/modal", locals: { user: @user } %>
+<%= render partial: "shared/modal" %>
+<%= render partial: "shared/modal_draw" %>
