@@ -14,6 +14,12 @@ class PartecipantsController < ApplicationController
 
   end
 
+  def destroy
+    @partecipant = Partecipant.find(params[:id])
+    @partecipant.destroy
+    redirect_to draw_path(@partecipant.draw), status: :see_other
+  end
+
   private
 
   def partecipant_params
