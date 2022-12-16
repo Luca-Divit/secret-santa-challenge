@@ -15,5 +15,22 @@
   </h1>
   <%= link_to 'Click here', '#', class: 'btn btn-flat' %>
 </div>
+<% unless @draws.empty? %>
+  <div class="container mt-2 mb-2 text-center">
+    <hr>
+    <h1>Your draws</h1>
+    <p>You have got: <%= @draws.count %> draws</p>
+    <% @draws.each do |draw| %>
+      <div class="container d-flex justify-content-between mt-2">
+        <div class="draw-title">
+          <h1><%= draw.title.capitalize %></h1>
+        </div>
+        <div class="add-partecipant">
+          <%= link_to 'Check it out', draw_path(draw), class: 'btn btn-flat' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 <%= render partial: "shared/modal" %>
 <%= render partial: "shared/modal_draw" %>

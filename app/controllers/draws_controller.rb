@@ -2,6 +2,7 @@ class DrawsController < ApplicationController
   def index
     @user = User.new
     @draw = Draw.new
+    @draws = current_user.draws if current_user
   end
 
   def create
