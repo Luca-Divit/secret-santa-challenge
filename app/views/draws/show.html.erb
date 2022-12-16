@@ -1,16 +1,24 @@
 <div class="container mt-3 mb-3 text-center", style='min-height: 77vh;'>
-  <h1>Your draws</h1>
-  <p>You have got: <%= @draws.count %> draws</p>
-  <% if @draws.count > 0 %>
-    <% @draws.each do |draw| %>
+  <h1><%= @draw.title.capitalize %></h1>
+  <h4>Budget: £<%= @draw.budget %></h4>
+  <h4>Date: <%= @draw.date %></h4>
+  <% unless @draw.partecipants.empty? %>
     <div class="container d-flex justify-content-between mt-2">
-      <div class="draw-title">
-        <h1><%= draw.title.capitalize %></h1>
-      </div>
-      <div class="add-partecipant">
-        <%= link_to 'Add parteciapant', '#', class: 'btn btn-flat' %>
-      </div>
+      <% @draw.partecipants.each_with_index do |partecipant, index| %>
+        <div class="draw-title">
+          <h1><%= partecipant.name.capitalize %></h1>
+        </div>
+        <% if partecipant[index + 1].nil? %>
+          <div class="add-partecipant">
+            <a class="btn btn-flat" data-bs-toggle="modal" href="#exampleModalPartecipant" role="button">Add partecipant!</a>
+          </div>
+        <% end %>
+      <% end %>
     </div>
-    <% end %>
+  <% else %>
+    <a class="btn btn-flat" data-bs-toggle="modal" href="#exampleModalPartecipant" role="button">Add partecipant!</a>
   <% end %>
+  <%= link_to 'Launch the draw!', '#', class: 'btn btn-primary' %>
+  <%= link_to 'Set exclusions!', '#', class: 'btn btn-warning' %>
 </div>
+<%= render partial: "shared/modal_partecipant" %>
