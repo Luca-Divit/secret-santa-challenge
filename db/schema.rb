@@ -10,18 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_15_153710) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_16_114521) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "draw_partecipants", force: :cascade do |t|
-    t.bigint "draw_id", null: false
-    t.bigint "partecipant_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["draw_id"], name: "index_draw_partecipants_on_draw_id"
-    t.index ["partecipant_id"], name: "index_draw_partecipants_on_partecipant_id"
-  end
 
   create_table "draws", force: :cascade do |t|
     t.string "title"
@@ -37,6 +28,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_15_153710) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "draw_id", null: false
+    t.index ["draw_id"], name: "index_partecipants_on_draw_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -70,9 +63,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_15_153710) do
     t.index ["product_id"], name: "index_wishlists_on_product_id"
   end
 
-  add_foreign_key "draw_partecipants", "draws"
-  add_foreign_key "draw_partecipants", "partecipants"
   add_foreign_key "draws", "users"
+  add_foreign_key "partecipants", "draws"
   add_foreign_key "wishlists", "draws"
   add_foreign_key "wishlists", "partecipants"
   add_foreign_key "wishlists", "products"

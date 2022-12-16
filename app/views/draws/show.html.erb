@@ -3,18 +3,18 @@
   <h4>Budget: £<%= @draw.budget %></h4>
   <h4>Date: <%= @draw.date %></h4>
   <% unless @draw.partecipants.empty? %>
-    <div class="container d-flex justify-content-between mt-2">
-      <% @draw.partecipants.each_with_index do |partecipant, index| %>
+    <% @draw.partecipants.each_with_index do |partecipant, index| %>
+      <div class="container d-flex justify-content-between mt-2">
         <div class="draw-title">
           <h1><%= partecipant.name.capitalize %></h1>
         </div>
-        <% if partecipant[index + 1].nil? %>
+        <% if partecipant.name == @draw.partecipants.last.name %>
           <div class="add-partecipant">
-            <a class="btn btn-flat" data-bs-toggle="modal" href="#exampleModalPartecipant" role="button">Add partecipant!</a>
+            <a class="btn btn-flat" data-bs-toggle="modal" href="#exampleModalPartecipant" role="button">Add!</a>
           </div>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   <% else %>
     <a class="btn btn-flat" data-bs-toggle="modal" href="#exampleModalPartecipant" role="button">Add partecipant!</a>
   <% end %>
