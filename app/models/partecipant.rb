@@ -1,3 +1,3 @@
 class Partecipant < ApplicationRecord
-  has_many :draws, through: :draw_partecipants
+  belongs_to :draw
 end

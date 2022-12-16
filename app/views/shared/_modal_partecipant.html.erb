@@ -6,7 +6,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= simple_form_for @partecipant do |f| %>
+        <%= simple_form_for [@draw, @partecipant] do |f| %>
           <%= f.input :name %>
           <span><small>* mandatory fields</small></span>
       </div>
