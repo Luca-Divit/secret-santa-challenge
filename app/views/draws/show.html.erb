@@ -6,13 +6,14 @@
     <% @draw.partecipants.each_with_index do |partecipant, index| %>
       <div class="container d-flex justify-content-between mt-2">
         <div class="draw-title">
-          <h1><%= partecipant.name.capitalize %></h1>
+          <h4><%= partecipant.name.capitalize %></h4>
         </div>
-        <% if partecipant.name == @draw.partecipants.last.name %>
-          <div class="add-partecipant">
+        <div class="add-partecipant">
+          <%= link_to 'Remove', partecipant_path(partecipant), data: { turbo_method: :delete }, class: 'btn btn-warning' %>
+          <% if partecipant.name == @draw.partecipants.last.name %>
             <a class="btn btn-flat" data-bs-toggle="modal" href="#exampleModalPartecipant" role="button">Add!</a>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     <% end %>
   <% else %>

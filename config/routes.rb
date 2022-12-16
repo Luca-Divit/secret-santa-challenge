@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   resources :draws, only: %i[create show] do
     resources :partecipants, only: %i[create show]
   end
+  resources :partecipants, only: :destroy
   resources :users, only: %i[create show]
 end
