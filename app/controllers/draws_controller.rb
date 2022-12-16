@@ -16,7 +16,7 @@ class DrawsController < ApplicationController
   end
 
   def show
-    @draws = Draw.where(user: current_user)
+    @draw = Draw.find(params[:id])
   end
 
   private
