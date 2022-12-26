@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_16_114521) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_26_200706) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_114521) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_draws_on_user_id"
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.bigint "draws_id", null: false
+    t.bigint "giver_id", null: false
+    t.bigint "receiver_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["draws_id"], name: "index_matches_on_draws_id"
+    t.index ["giver_id"], name: "index_matches_on_giver_id"
+    t.index ["receiver_id"], name: "index_matches_on_receiver_id"
   end
 
   create_table "partecipants", force: :cascade do |t|
@@ -64,6 +75,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_114521) do
   end
 
   add_foreign_key "draws", "users"
+  add_foreign_key "matches", "draws", column: "draws_id"
+  add_foreign_key "matches", "partecipants", column: "giver_id"
+  add_foreign_key "matches", "partecipants", column: "receiver_id"
   add_foreign_key "partecipants", "draws"
   add_foreign_key "wishlists", "draws"
   add_foreign_key "wishlists", "partecipants"
